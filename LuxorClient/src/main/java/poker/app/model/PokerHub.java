@@ -118,6 +118,7 @@ public class PokerHub extends Hub {
 				//			Order should be 1, 2, 4
 				//		< 10 lines of code
 				List<Integer> GamePlayOrder = new ArrayList<Integer>();
+				int dealerPosition = 1;
 				for(int dealerTestPosition = 1; dealerTestPosition < 5; dealerTestPosition++){
 					if(HubGamePlay.getPlayerByPosition(dealerTestPosition)==dealer){
 						int[] GamePlayTestOrder = HubGamePlay.GetOrder(dealerTestPosition);
@@ -127,15 +128,18 @@ public class PokerHub extends Hub {
 							}
 						}
 					}
+					dealerPosition = dealerTestPosition;
+					break;
 				}
 				int[] GamePlayOrderArray = new int[GamePlayOrder.size()];
 				for(int iterator = 0; iterator < GamePlayOrder.size(); iterator++){
 					GamePlayOrderArray[iterator] = GamePlayOrder.get(iterator);
 				}
+				HubGamePlay.setiActOrder(GamePlayOrderArray);
 				
 				
 				//	Set PlayerID_NextToAct in GamePlay (next player after Dealer)
-				HubGamePlay.setPlayerNextToAct(HubGamePlay.getPlayerByPosition(GamePlayOrderArray[1]));
+				HubGamePlay.setPlayerNextToAct(HubGamePlay.getPlayerByPosition(GamePlay.NextPosition(dealerPosition, GamePlayOrderArray)));
 				
 
 				//	Send the state of the game back to the players
