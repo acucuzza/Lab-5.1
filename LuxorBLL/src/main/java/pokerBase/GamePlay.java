@@ -71,7 +71,7 @@ public class GamePlay implements Serializable   {
 		return GameDealer;
 	}
 
-	private void setGameDealer(UUID gameDealer) {
+	public void setGameDealer(UUID gameDealer) {
 		GameDealer = gameDealer;
 	}
 

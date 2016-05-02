@@ -91,6 +91,7 @@ public class PokerHub extends Hub {
 				//		< 5 lines of code to pick random player
 				
 				Player dealer = HubPokerTable.PickRandomPlayerAtTable();
+				HubGamePlay.setGameDealer(dealer.getPlayerID());
 				
 				//	Start a new instance of GamePlay, based on rule set and Dealer (Player.PlayerID)
 				//		1 line of code
