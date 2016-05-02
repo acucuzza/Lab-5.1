@@ -236,15 +236,61 @@ public class PokerTableController {
 
 	public void Handle_GameState(GamePlay HubGamePlay) 
 	{
-		/*
+		
 		imgViewDealerButtonPos1.setVisible(false);
 		imgViewDealerButtonPos2.setVisible(false);
 		imgViewDealerButtonPos3.setVisible(false);
 		imgViewDealerButtonPos4.setVisible(false);
-		*/
+		
 
 		//TODO - Lab #5: Check to see if you're the dealer..  If you are, make the imgViewDealerButtonX visible = true
-		
+		Iterator it = HubGamePlay.getGamePlayers().entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			Player p = (Player) pair.getValue();
+			switch (p.getiPlayerPosition()) {
+			case 1:
+				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+					imgViewDealerButtonPos1.setVisible(true);
+					imgViewDealerButtonPos2.setVisible(false);
+					imgViewDealerButtonPos3.setVisible(false);
+					imgViewDealerButtonPos4.setVisible(false);
+				} else {
+					imgViewDealerButtonPos1.setVisible(false);
+				}
+				break;
+			case 2:
+				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+					imgViewDealerButtonPos1.setVisible(false);
+					imgViewDealerButtonPos2.setVisible(true);
+					imgViewDealerButtonPos3.setVisible(false);
+					imgViewDealerButtonPos4.setVisible(false);
+				} else {
+					imgViewDealerButtonPos2.setVisible(false);
+				}
+				break;
+			case 3:
+				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+					imgViewDealerButtonPos1.setVisible(false);
+					imgViewDealerButtonPos2.setVisible(false);
+					imgViewDealerButtonPos3.setVisible(true);
+					imgViewDealerButtonPos4.setVisible(false);
+				} else {
+					imgViewDealerButtonPos3.setVisible(false);
+				}
+				break;
+			case 4:
+				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+					imgViewDealerButtonPos1.setVisible(false);
+					imgViewDealerButtonPos2.setVisible(false);
+					imgViewDealerButtonPos3.setVisible(false);
+					imgViewDealerButtonPos4.setVisible(true);
+				} else {
+					imgViewDealerButtonPos4.setVisible(false);
+				}
+				break;
+			}
+		}
 	}
 	@FXML
 	void btnStart_Click(ActionEvent event) {
